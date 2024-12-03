@@ -3,13 +3,15 @@ import '../assets/CSS/layout.css';
 import Product from './Product';
 import flowers from './FlowerDB'
 import {useState} from 'react'
+import Cart from './Cart';
 
 export default function Products(){
     const [items, setItems] = useState([]);
-  
+    const [grandTotal, setGrandTotal] = useState(0);
+    
     const addToCart = (item)=>{
         setItems([...items, item]);
-        
+        setGrandTotal((prev)=> prev+item.price);
     } 
     console.log(items)
     return(
@@ -30,7 +32,7 @@ export default function Products(){
             </div>
             <div className="item3">
                 {
-                //cart
+                <Cart items={items} total={grandTotal}/>
                 }
             </div>
         </>
